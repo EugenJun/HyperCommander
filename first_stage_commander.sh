@@ -17,10 +17,12 @@ EOF
 }
 
 while true; do
-	show_menu && read -r choice
+	show_menu && read -r choice && echo ""
 	case $choice in
-		0) echo -e "\nFarewell!" && break ;;
-                [1-4]) echo "Not implemented!" ;;
+		0) echo -e "Farewell!" && break ;;
+		1) uname -n -o ;;
+		2) whoami ;;
+		[3-4]) echo "Not implemented!" ;;
                 *) echo "Invalid option!" ;;
 	esac
 done
