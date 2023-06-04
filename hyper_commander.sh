@@ -78,6 +78,19 @@ EOF
 	done
 }
 
+find_executables() {
+	echo "Enter an executable name:" && read -r exe
+	exe_path=$(which $exe 2>/dev/null)
+
+	if [ -z "$exe_path" ]; then
+		echo "The executable with that name does not exist!"
+	else
+		echo -e "\nLocated in: $exe_path"
+		echo -e "\nEnter arguments:" && read -r args
+		eval "$exe_path $args"
+	fi
+}
+
 main() {
 while true; do
 	show_menu && read -r choice && echo ""
@@ -86,7 +99,7 @@ while true; do
 		1) uname -n -o ;;
 		2) whoami ;;
 		3) show_dir_content ;;
-		4) echo "Not implemented!" ;;
+		4) find_executables ;;
                 *) echo "Invalid option!" ;;
 	esac
 done
